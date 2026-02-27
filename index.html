@@ -1,23 +1,639 @@
 <!DOCTYPE html>
+
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LIA — 분자 · 배터리 소재 검증</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#0a0a0b;--surface:#111113;--surface2:#18181b;--border:#27272a;--text:#fafafa;--text-dim:#a1a1aa;--text-muted:#71717a;--accent:#f59e0b;--accent2:#fbbf24;--green:#22c55e;--red:#ef4444}*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;line-height:1.7;overflow-x:hidden}.container{max-width:1100px;margin:0 auto;padding:0 24px}nav{padding:28px 0;border-bottom:1px solid var(--border)}nav .container{display:flex;justify-content:space-between;align-items:center}.logo{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--accent)}.logo span{color:var(--text-dim);font-weight:300;font-family:'Noto Sans KR',sans-serif;font-size:1rem}.nav-contact{font-size:.85rem;color:var(--text-muted);text-decoration:none;border:1px solid var(--border);padding:8px 20px;border-radius:100px;transition:all .3s}.nav-contact:hover{border-color:var(--accent);color:var(--accent)}.hero{padding:100px 0 80px}.hero-label{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.1em;color:var(--accent);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:6px 16px;border-radius:100px;margin-bottom:32px}.hero h1{font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.2;letter-spacing:-.02em;max-width:750px;margin-bottom:28px}.hero h1 em{font-style:normal;color:var(--accent)}.hero-sub{font-size:1.1rem;color:var(--text-dim);max-width:560px;line-height:1.8;font-weight:300;margin-bottom:48px}.hero-cta{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#000;font-weight:600;font-size:1rem;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .3s;border:none;cursor:pointer}.hero-cta:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(245,158,11,.25)}.proof-bar{padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}.proof-item .number{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:500;color:var(--accent);display:block}.proof-item .label{font-size:.82rem;color:var(--text-muted);margin-top:6px;line-height:1.5}.section{padding:100px 0}.section-label{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}.section-title{font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:56px;max-width:500px}.pred-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:56px;position:relative;overflow:hidden}.pred-label{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--green);margin-bottom:20px}.pred-title{font-weight:700;font-size:1.7rem;line-height:1.3;margin-bottom:24px;max-width:640px}.pred-body{color:var(--text-dim);font-size:1rem;line-height:1.8;max-width:640px}.pred-body strong{color:var(--text);font-weight:600}.pred-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}.pred-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:28px}.pred-card.them{border-color:rgba(239,68,68,.3)}.pred-card.us{border-color:rgba(34,197,94,.3)}.pred-card-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;margin-bottom:16px}.pred-card.them .pred-card-label{color:var(--red)}.pred-card.us .pred-card-label{color:var(--green)}.pred-card-stat{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:500;margin-bottom:4px}.pred-card-desc{font-size:.85rem;color:var(--text-muted)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.step{background:var(--surface);border:1px solid var(--border);padding:40px 32px}.step:first-child{border-radius:12px 0 0 12px}.step:last-child{border-radius:0 12px 12px 0}.step-num{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);margin-bottom:20px;display:block}.step h3{font-size:1.1rem;font-weight:600;margin-bottom:12px}.step p{font-size:.9rem;color:var(--text-dim);line-height:1.7}.table-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}.table-header{padding:32px 40px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.table-header h3{font-size:1.2rem;font-weight:700}.table-header span{font-size:.8rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace}table{width:100%;border-collapse:collapse}thead th{text-align:left;padding:14px 24px;font-size:.72rem;font-weight:600;letter-spacing:.08em;color:var(--text-muted);border-bottom:1px solid var(--border);background:var(--surface2)}tbody td{padding:16px 24px;font-size:.92rem;border-bottom:1px solid rgba(39,39,42,.5)}tbody tr:hover{background:rgba(245,158,11,.03)}.mol-name{font-weight:500}.mol-formula{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--text-dim)}.fidelity{font-family:'JetBrains Mono',monospace;font-weight:500}.fidelity.perfect{color:var(--green)}.fidelity.high{color:var(--accent)}.electrons{font-family:'JetBrains Mono',monospace;color:var(--text-dim)}.app-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.app-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:36px;transition:border-color .3s}.app-card:hover{border-color:var(--accent)}.app-icon{font-size:1.8rem;margin-bottom:16px;display:block}.app-card h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}.app-card p{font-size:.88rem;color:var(--text-dim);line-height:1.7}.final-cta{padding:80px 0 100px;text-align:center}.cta-box{background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(245,158,11,.02));border:1px solid rgba(245,158,11,.15);border-radius:20px;padding:72px 48px}.cta-box h2{font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:16px}.cta-box p{color:var(--text-dim);font-size:1.05rem;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto}.cta-email{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(245,158,11,.3);padding-bottom:2px}.cta-email:hover{border-color:var(--accent)}footer{padding:40px 0;border-top:1px solid var(--border);text-align:center;font-size:.78rem;color:var(--text-muted)}footer span{color:var(--text-dim)}@media(max-width:768px){.proof-grid{grid-template-columns:repeat(2,1fr);gap:24px}.pred-compare{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-radius:0!important}.step:first-child{border-radius:12px 12px 0 0!important}.step:last-child{border-radius:0 0 12px 12px!important}.app-grid{grid-template-columns:1fr}.pred-box{padding:36px 24px}.table-header{flex-direction:column;align-items:flex-start;gap:8px}}@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.hero h1,.hero-sub,.hero-cta,.hero-label{animation:fadeUp .8s ease-out both}.hero-label{animation-delay:0s}.hero h1{animation-delay:.1s}.hero-sub{animation-delay:.2s}.hero-cta{animation-delay:.3s}
+
+  :root {
+
+    --bg: #0a0a0b;
+
+    --surface: #111113;
+
+    --surface2: #18181b;
+
+    --border: #27272a;
+
+    --text: #fafafa;
+
+    --text-dim: #a1a1aa;
+
+    --text-muted: #71717a;
+
+    --accent: #f59e0b;
+
+    --accent2: #fbbf24;
+
+    --green: #22c55e;
+
+    --red: #ef4444;
+
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: 'Noto Sans KR', sans-serif;
+
+    line-height: 1.7;
+
+    overflow-x: hidden;
+
+  }
+
+  body::after {
+
+    content: '';
+
+    position: fixed;
+
+    top: 0; left: 0; right: 0; bottom: 0;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  nav { padding: 28px 0; border-bottom: 1px solid var(--border); }
+
+  nav .container { display: flex; justify-content: space-between; align-items: center; }
+
+  .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--accent); }
+
+  .logo span { color: var(--text-dim); font-weight: 300; font-family: 'Noto Sans KR', sans-serif; font-size: 1rem; }
+
+  .nav-contact {
+
+    font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+
+    border: 1px solid var(--border); padding: 8px 20px; border-radius: 100px; transition: all 0.3s;
+
+  }
+
+  .nav-contact:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero { padding: 100px 0 80px; }
+
+  .hero-label {
+
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+
+    letter-spacing: 0.1em; color: var(--accent);
+
+    background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
+
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 32px;
+
+  }
+
+  .hero h1 {
+
+    font-family: 'Noto Sans KR', sans-serif; font-weight: 700;
+
+    font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.2;
+
+    letter-spacing: -0.02em; max-width: 750px; margin-bottom: 28px;
+
+  }
+
+  .hero h1 em { font-style: normal; color: var(--accent); }
+
+  .hero-sub {
+
+    font-size: 1.1rem; color: var(--text-dim); max-width: 560px;
+
+    line-height: 1.8; font-weight: 300; margin-bottom: 48px;
+
+  }
+
+  .hero-cta {
+
+    display: inline-flex; align-items: center; gap: 12px;
+
+    background: var(--accent); color: #000; font-weight: 600; font-size: 1rem;
+
+    padding: 16px 36px; border-radius: 100px; text-decoration: none;
+
+    transition: all 0.3s; border: none; cursor: pointer;
+
+  }
+
+  .hero-cta:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(245,158,11,0.25); }
+
+  .proof-bar { padding: 48px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); }
+
+  .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+
+  .proof-item .number { font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 500; color: var(--accent); display: block; }
+
+  .proof-item .label { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+
+  .section { padding: 100px 0; }
+
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+
+  .section-title { font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 56px; max-width: 500px; }
+
+  .pred-box {
+
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+
+    padding: 56px; position: relative; overflow: hidden;
+
+  }
+
+  .pred-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--green)); }
+
+  .pred-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; color: var(--green); margin-bottom: 20px; }
+
+  .pred-title { font-weight: 700; font-size: 1.7rem; line-height: 1.3; margin-bottom: 24px; max-width: 640px; }
+
+  .pred-body { color: var(--text-dim); font-size: 1rem; line-height: 1.8; max-width: 640px; }
+
+  .pred-body strong { color: var(--text); font-weight: 600; }
+
+  .pred-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+
+  .pred-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+
+  .pred-card.them { border-color: rgba(239,68,68,0.3); }
+
+  .pred-card.us { border-color: rgba(34,197,94,0.3); }
+
+  .pred-card-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 16px; }
+
+  .pred-card.them .pred-card-label { color: var(--red); }
+
+  .pred-card.us .pred-card-label { color: var(--green); }
+
+  .pred-card-stat { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 500; margin-bottom: 4px; }
+
+  .pred-card-desc { font-size: 0.85rem; color: var(--text-muted); }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+  .step { background: var(--surface); border: 1px solid var(--border); padding: 40px 32px; }
+
+  .step:first-child { border-radius: 12px 0 0 12px; }
+
+  .step:last-child { border-radius: 0 12px 12px 0; }
+
+  .step-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 20px; display: block; }
+
+  .step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; }
+
+  .step p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.7; }
+
+  .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+
+  .table-header { padding: 32px 40px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+  .table-header h3 { font-size: 1.2rem; font-weight: 700; }
+
+  .table-header span { font-size: 0.8rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  thead th { text-align: left; padding: 14px 24px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; color: var(--text-muted); border-bottom: 1px solid var(--border); background: var(--surface2); }
+
+  tbody td { padding: 16px 24px; font-size: 0.92rem; border-bottom: 1px solid rgba(39,39,42,0.5); }
+
+  tbody tr:hover { background: rgba(245,158,11,0.03); }
+
+  .mol-name { font-weight: 500; }
+
+  .mol-formula { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
+
+  .fidelity { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+
+  .fidelity.perfect { color: var(--green); }
+
+  .fidelity.high { color: var(--accent); }
+
+  .electrons { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); }
+
+  .app-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+  .app-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 36px; transition: border-color 0.3s; }
+
+  .app-card:hover { border-color: var(--accent); }
+
+  .app-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+
+  .app-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+
+  .app-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.7; }
+
+  .final-cta { padding: 80px 0 100px; text-align: center; }
+
+  .cta-box {
+
+    background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+
+    border: 1px solid rgba(245,158,11,0.15); border-radius: 20px; padding: 72px 48px;
+
+  }
+
+  .cta-box h2 { font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 16px; }
+
+  .cta-box p { color: var(--text-dim); font-size: 1.05rem; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  .cta-email {
+
+    font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: var(--accent);
+
+    text-decoration: none; border-bottom: 1px solid rgba(245,158,11,0.3); padding-bottom: 2px;
+
+  }
+
+  .cta-email:hover { border-color: var(--accent); }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.78rem; color: var(--text-muted); }
+
+  footer span { color: var(--text-dim); }
+
+  @media (max-width: 768px) {
+
+    .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+    .pred-compare { grid-template-columns: 1fr; }
+
+    .steps { grid-template-columns: 1fr; }
+
+    .step { border-radius: 0 !important; }
+
+    .step:first-child { border-radius: 12px 12px 0 0 !important; }
+
+    .step:last-child { border-radius: 0 0 12px 12px !important; }
+
+    .app-grid { grid-template-columns: 1fr; }
+
+    .pred-box { padding: 36px 24px; }
+
+    .table-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero h1, .hero-sub, .hero-cta, .hero-label { animation: fadeUp 0.8s ease-out both; }
+
+  .hero-label { animation-delay: 0s; }
+
+  .hero h1 { animation-delay: 0.1s; }
+
+  .hero-sub { animation-delay: 0.2s; }
+
+  .hero-cta { animation-delay: 0.3s; }
+
 </style>
+
 </head>
+
 <body>
-<nav><div class="container"><div class="logo">LIA<span> 분자 검증</span></div><a href="mailto:contact@lia.com" class="nav-contact">문의하기 →</a></div></nav>
-<section class="hero"><div class="container"><div class="hero-label">분자 · 배터리 소재 검증</div><h1>화학식 하나 보내세요.<br><em>48시간</em> 안에<br>검증 결과 드립니다.</h1><p class="hero-sub">배터리 소재, 신약 후보 물질, 분자식을 자사 특허 기술로 검증합니다. 안정성 순위와 검증 결과를 드립니다. 방법은 비공개입니다.</p><a href="mailto:contact@lia.com" class="hero-cta">첫 1건 무료</a></div></section>
-<section class="proof-bar"><div class="container"><div class="proof-grid"><div class="proof-item"><span class="number">718</span><div class="label">최대 전자 수 측정<br>(세계 최대 규모)</div></div><div class="proof-item"><span class="number">100.00%</span><div class="label">Fidelity 달성<br>(비타민 B12, 50회)</div></div><div class="proof-item"><span class="number">17</span><div class="label">생체분자 검증 완료<br>(DNA, ATP, 헴, 엽록소 등)</div></div><div class="proof-item"><span class="number">₩0</span><div class="label">하드웨어 비용<br>(자체 시스템)</div></div></div></div></section>
-<section class="section"><div class="container"><div class="pred-box"><div class="pred-label">✓ 배터리 소재 검증 완료</div><h2 class="pred-title">16종 배터리 소재 테스트. 7개 전해질 조합. 전부 실측.</h2><p class="pred-body">주요 제조사가 사용하는 양극재, 음극재, 전해질, 분리막을 검증했습니다. <strong>NCM811, LFP, 리튬메탈, LLZO, 황화물, 아자이로다이트</strong> 등 50회 이상 반복 측정.</p><div class="pred-compare"><div class="pred-card them"><div class="pred-card-label">기존 실험실 테스트</div><div class="pred-card-stat">수 개월</div><div class="pred-card-desc">합성→조립→사이클 테스트→분석. 수억 원 장비.</div></div><div class="pred-card us"><div class="pred-card-label">LIA 검증</div><div class="pred-card-stat">48시간</div><div class="pred-card-desc">화학식 전송→자체 시스템 검증→안정성 점수.</div></div></div></div></div></section>
-<section class="section" style="padding-top:0;"><div class="container"><div class="section-label">진행 방식</div><h2 class="section-title">3단계. 귀사의 기밀은 필요 없습니다.</h2><div class="steps"><div class="step"><span class="step-num">01</span><h3>화학식 전송</h3><p>분자식만 보내주세요.</p></div><div class="step"><span class="step-num">02</span><h3>검증 실행</h3><p>자사 특허 시스템으로 검증합니다.</p></div><div class="step"><span class="step-num">03</span><h3>결과 수령</h3><p>48시간 안에 전달합니다. 첫 1건 무료.</p></div></div></div></section>
-<section class="section" style="padding-top:0;"><div class="container"><div class="section-label">실적</div><h2 class="section-title">자체 기술로 검증한 결과.</h2><div class="table-wrap"><div class="table-header"><h3>분자 검증 결과</h3><span>50회 반복 · 2026년 2월</span></div><table><thead><tr><th>분자</th><th>화학식</th><th>전자 수</th><th>Fidelity</th></tr></thead><tbody><tr><td class="mol-name">비타민 B12</td><td class="mol-formula">C₆₃H₈₈CoN₁₄O₁₄P</td><td class="electrons">718</td><td class="fidelity perfect">100.00%</td></tr><tr><td class="mol-name">엽록소 a</td><td class="mol-formula">C₅₅H₇₂MgN₄O₅</td><td class="electrons">482</td><td class="fidelity high">99.16%</td></tr><tr><td class="mol-name">풀러렌 C60</td><td class="mol-formula">C₆₀</td><td class="electrons">360</td><td class="fidelity high">99.33%</td></tr><tr><td class="mol-name">헴</td><td class="mol-formula">C₃₄H₃₂FeN₄O₄</td><td class="electrons">322</td><td class="fidelity high">99.27%</td></tr><tr><td class="mol-name">ATP</td><td class="mol-formula">C₁₀H₁₆N₅O₁₃P₃</td><td class="electrons">260</td><td class="fidelity high">99.63%</td></tr><tr><td class="mol-name">카페인</td><td class="mol-formula">C₈H₁₀N₄O₂</td><td class="electrons">102</td><td class="fidelity high">99.53%</td></tr><tr><td class="mol-name">아드레날린</td><td class="mol-formula">C₉H₁₃NO₃</td><td class="electrons">98</td><td class="fidelity high">99.37%</td></tr></tbody></table></div></div></section>
-<section class="section" style="padding-top:0;"><div class="container"><div class="section-label">적용 분야</div><h2 class="section-title">검증 가능한 영역.</h2><div class="app-grid"><div class="app-card"><span class="app-icon">⚡</span><h3>배터리 소재</h3><p>16종 소재 검증 완료.</p></div><div class="app-card"><span class="app-icon">💊</span><h3>신약 개발</h3><p>700전자 이상 대형 분자까지.</p></div><div class="app-card"><span class="app-icon">🔬</span><h3>첨단 소재</h3><p>촉매, 반도체 소재.</p></div><div class="app-card"><span class="app-icon">🧬</span><h3>생화학</h3><p>ATP, 헴, 엽록소, DNA 검증.</p></div></div></div></section>
-<section class="final-cta"><div class="container"><div class="cta-box"><h2>화학식 하나 보내주세요.<br>결과로 판단하세요.</h2><p>첫 검증은 무료입니다.</p><a href="mailto:contact@lia.com" class="cta-email">contact@lia.com →</a></div></div></section>
-<footer><div class="container"><span>LIA</span> · 분자 · 배터리 소재 검증 · 2026</div></footer>
+
+<nav>
+
+  <div class="container">
+
+    <div class="logo">LIA<span> 분자 검증</span></div>
+
+    <a href="mailto:jgch1234@icloud.com" class="nav-contact">문의하기 →</a>
+
+  </div>
+
+</nav>
+
+
+
+<section class="hero">
+
+  <div class="container">
+
+    <div class="hero-label">분자 · 배터리 소재 검증</div>
+
+    <h1>화학식 하나 보내세요.<br><em>48시간</em> 안에<br>검증 결과 드립니다.</h1>
+
+    <p class="hero-sub">배터리 소재, 신약 후보 물질, 분자식을 자사 특허 기술로 검증합니다. 안정성 순위와 검증 결과를 드립니다. 방법은 비공개입니다.</p>
+
+    <a href="mailto:jgch1234@icloud.com?subject=분자 검증 문의&body=안녕하세요, 분자 검증 서비스에 관심이 있습니다." class="hero-cta">
+
+      첫 1건 무료
+
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+
+    </a>
+
+  </div>
+
+</section>
+
+<section class="proof-bar">
+
+  <div class="container">
+
+    <div class="proof-grid">
+
+      <div class="proof-item">
+
+        <span class="number">718</span>
+
+        <div class="label">최대 전자 수 측정<br>(세계 최대 규모)</div>
+
+      </div>
+
+      <div class="proof-item">
+
+        <span class="number">100.00%</span>
+
+        <div class="label">Fidelity 달성<br>(비타민 B12, 50회)</div>
+
+      </div>
+
+      <div class="proof-item">
+
+        <span class="number">17</span>
+
+        <div class="label">생체분자 검증 완료<br>(DNA, ATP, 헴, 엽록소 등)</div>
+
+      </div>
+
+      <div class="proof-item">
+
+        <span class="number">₩0</span>
+
+        <div class="label">하드웨어 비용<br>(자체 시스템)</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="container">
+
+    <div class="pred-box">
+
+      <div class="pred-label">✓ 배터리 소재 검증 완료</div>
+
+      <h2 class="pred-title">16종 배터리 소재 테스트. 7개 전해질 조합. 전부 실측.</h2>
+
+      <p class="pred-body">주요 제조사가 사용하는 양극재, 음극재, 전해질, 분리막을 검증했습니다. <strong>NCM811, LFP, 리튜메탈, LLZO, 황화물, 아자이로다이트</strong> 등 50회 이상 반복 측정. 어떤 조합이 되고 안 되는지 확인했습니다.</p>
+
+      <div class="pred-compare">
+
+        <div class="pred-card them">
+
+          <div class="pred-card-label">기존 실험실 테스트</div>
+
+          <div class="pred-card-stat">수 개월</div>
+
+          <div class="pred-card-desc">합성 → 조립 → 사이클 테스트 → 분석. 수억 원 장비, 조합당 수 주.</div>
+
+        </div>
+
+        <div class="pred-card us">
+
+          <div class="pred-card-label">LIA 검증</div>
+
+          <div class="pred-card-stat">48시간</div>
+
+          <div class="pred-card-desc">화학식 전송 → 자체 시스템 검증 → 안정성 점수, 에너지 데이터.</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" style="padding-top:0;">
+
+  <div class="container">
+
+    <div class="section-label">진행 방식</div>
+
+    <h2 class="section-title">3단계. 귀사의 기밀은 필요 없습니다.</h2>
+
+    <div class="steps">
+
+      <div class="step">
+
+        <span class="step-num">01</span>
+
+        <h3>화학식 전송</h3>
+
+        <p>분자식만 보내주세요. 합성 방법이나 영업비밀은 필요 없습니다. 화학 조성만 있으면 됩니다.</p>
+
+      </div>
+
+      <div class="step">
+
+        <span class="step-num">02</span>
+
+        <h3>검증 실행</h3>
+
+        <p>자사 특허 시스템으로 검증합니다. 통계적 신뢰도를 위해 다수 반복 측정. 방법은 비공개입니다.</p>
+
+      </div>
+
+      <div class="step">
+
+        <span class="step-num">03</span>
+
+        <h3>결과 수령</h3>
+
+        <p>안정성 점수, 에너지 데이터, Fidelity 수치를 48시간 안에 전달합니다. 첫 1건은 무료입니다.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" style="padding-top:0;">
+
+  <div class="container">
+
+    <div class="section-label">실적</div>
+
+    <h2 class="section-title">자체 기술로 검증한 결과.</h2>
+
+    <div class="table-wrap">
+
+      <div class="table-header">
+
+        <h3>분자 검증 결과</h3>
+
+        <span>50회 반복 · 2026년 2월 · Fidelity 높을수록 정확도 높음</span>
+
+      </div>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>분자</th>
+
+            <th>화학식</th>
+
+            <th>전자 수</th>
+
+            <th>Fidelity</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr><td class="mol-name">비타민 B12</td><td class="mol-formula">C₆₃H₈₈CoN₁₄O₁₄P</td><td class="electrons">718</td><td class="fidelity perfect">100.00%</td></tr>
+
+          <tr><td class="mol-name">엽록소 a</td><td class="mol-formula">C₅₅H₇₂MgN₄O₅</td><td class="electrons">482</td><td class="fidelity high">99.16%</td></tr>
+
+          <tr><td class="mol-name">풀러렌 C60</td><td class="mol-formula">C₆₀</td><td class="electrons">360</td><td class="fidelity high">99.33%</td></tr>
+
+          <tr><td class="mol-name">헴</td><td class="mol-formula">C₃₄H₃₂FeN₄O₄</td><td class="electrons">322</td><td class="fidelity high">99.27%</td></tr>
+
+          <tr><td class="mol-name">ATP</td><td class="mol-formula">C₁₀H₁₆N₅O₁₃P₃</td><td class="electrons">260</td><td class="fidelity high">99.63%</td></tr>
+
+          <tr><td class="mol-name">Fe₄S₄ 클러스터</td><td class="mol-formula">[4Fe-4S]</td><td class="electrons">168</td><td class="fidelity high">98.34%</td></tr>
+
+          <tr><td class="mol-name">카페인</td><td class="mol-formula">C₈H₁₀N₄O₂</td><td class="electrons">102</td><td class="fidelity high">99.53%</td></tr>
+
+          <tr><td class="mol-name">아드레날린</td><td class="mol-formula">C₉H₁₃NO₃</td><td class="electrons">98</td><td class="fidelity high">99.37%</td></tr>
+
+          <tr><td class="mol-name">DNA 염기 (A, T, G, C)</td><td class="mol-formula">4종 뉴클레오타이드</td><td class="electrons">58–78</td><td class="fidelity high">97.1–99.2%</td></tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" style="padding-top:0;">
+
+  <div class="container">
+
+    <div class="section-label">적용 분야</div>
+
+    <h2 class="section-title">검증 가능한 영역.</h2>
+
+    <div class="app-grid">
+
+      <div class="app-card">
+
+        <span class="app-icon">⚡</span>
+
+        <h3>배터리 소재</h3>
+
+        <p>전극 안정성, 전해질 호환성, 계면 분석, 사이클 수명 예측. 16종 소재 검증 완료.</p>
+
+      </div>
+
+      <div class="app-card">
+
+        <span class="app-icon">💊</span>
+
+        <h3>신약 개발</h3>
+
+        <p>분자 에너지 계산, 결합 안정성, 구조 분석. 700전자 이상 대형 분자까지 50회 반복 검증.</p>
+
+      </div>
+
+      <div class="app-card">
+
+        <span class="app-icon">🔬</span>
+
+        <h3>첨단 소재</h3>
+
+        <p>촉매 설계, 반도체 소재, 다원소 복합체. 안정성 점수로 순위 매겨 드립니다.</p>
+
+      </div>
+
+      <div class="app-card">
+
+        <span class="app-icon">🧬</span>
+
+        <h3>생화학</h3>
+
+        <p>효소 활성 부위, 금속단백질 클러스터, DNA/RNA 상호작용. ATP, 헴, 엽록소, DNA 4종 검증 완료.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="final-cta">
+
+  <div class="container">
+
+    <div class="cta-box">
+
+      <h2>화학식 하나 보내주세요.<br>결과로 판단하세요.</h2>
+
+      <p>첫 검증은 무료입니다. 계약도, 약정도 없습니다. 결과가 마음에 안 드시면 비용은 없습니다.</p>
+
+      <a href="mailto:jgch1234@icloud.com?subject=분자 검증 문의&body=안녕하세요, 분자 검증 서비스에 관심이 있습니다." class="cta-email">jgch1234@icloud.com →</a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+
+  <div class="container">
+
+    <p>© 2026 LIA Company · 특허 KR 10-2025-0180416 · DOI: 10.5281/zenodo.18282243</p>
+
+  </div>
+
+</footer>
+
+
+
 </body>
+
 </html>
